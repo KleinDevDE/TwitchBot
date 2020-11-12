@@ -11,6 +11,6 @@ public class Main {
         PingSocket pingSocket = new PingSocket(new URI("ws://localhost:8081/ping"));
         pingSocket.connect();
         pingSocket.send(new PingPacket().getSendableString());
-        pingSocket.send(new AuthPacket().getSendableString());
+//        pingSocket.send(new AuthPacket().getSendableString());
     }
 }

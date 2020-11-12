@@ -37,4 +37,12 @@ public class EndpointManager {
     public static WebSocketEndpoint getEndpoint(String resourceDescriptor){
         return webSocketEndpointHashMap.get(resourceDescriptor.toLowerCase());
     }
+
+    public void a(String required, String optional){
+
+    }
+
+    public void a(String required){
+        a(required, "Hallo");
+    }
 }
