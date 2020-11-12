@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="266.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.kleindev.twitchbot.client.fxmlcontrollers.debug.Debug_Login">
+    <children>
+        <TextField fx:id="username" onKeyTyped="#validateUsername" layoutX="14.0" layoutY="43.0" promptText="Username"/>
+        <TextField fx:id="password" onKeyTyped="#validatePassword" layoutX="14.0" layoutY="75.0" promptText="Password"/>
+        <TextField fx:id="email" onKeyTyped="#validateEmail" layoutX="14.0" layoutY="108.0" promptText="Email"/>
+        <TextField fx:id="twitch_username" onKeyTyped="#validateTwitchUsername" layoutX="14.0" layoutY="139.0" promptText="Twitch Username"/>
+        <TextField fx:id="twitch_token" onKeyTyped="#validateTwitchToken" layoutX="14.0" layoutY="171.0" promptText="Twitch Token"/>
+        <Button onMouseClicked="#onResetClick" layoutX="196.0" layoutY="227.0" mnemonicParsing="false" text="Reset"/>
+        <Button onMouseClicked="#onLoginClick" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" text="Login"/>
+        <Button onMouseClicked="#onRegisterClick" layoutX="75.0" layoutY="227.0" mnemonicParsing="false" text="Register"/>
+        <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="174.0" text="Test Register &amp; Test Login">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
