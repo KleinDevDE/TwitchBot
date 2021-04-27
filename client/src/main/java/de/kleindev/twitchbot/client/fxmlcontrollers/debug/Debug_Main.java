@@ -12,10 +12,10 @@ public class Debug_Main {
     }
 
     public void ping(MouseEvent mouseEvent) {
-        WebSocketManager.getClient("ping").send(new PingPacket().getSendableString());
+        new PingPacket().send("ping");
     }
 
     public void send2FARequest(MouseEvent mouseEvent) {
-        WebSocketManager.getClient("auth").send(new AuthPacket(AuthType.GENERATE_TWOFA, new String[]{null, "KleinDev"}).getSendableString());
+        new AuthPacket(AuthType.GENERATE_TWOFA, new String[]{null, "KleinDev"}).send("auth");
     }
 }

@@ -68,7 +68,7 @@ public class Debug_2FA {
     }
 
     public void sendToken(MouseEvent mouseEvent) {
-        WebSocketManager.getClient("auth").send(new AuthPacket(AuthType.TWOFA_TOKEN, new String[]{"1532", "KleinDev", strToken.getText()}).getSendableString());
+        new AuthPacket(AuthType.TWOFA_TOKEN, new String[]{"1532", "KleinDev", strToken.getText()}).send("auth");
     }
 
     public Image generateQR(String content, int width, int height) {

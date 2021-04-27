@@ -6,6 +6,5 @@ public enum AuthType {
     REGISTER,
     FORGOT_PASSWORD,
     TWOFA_TOKEN,
-    GENERATE_TWOFA,
-    SUCCESSFUL
+    GENERATE_TWOFA
 }

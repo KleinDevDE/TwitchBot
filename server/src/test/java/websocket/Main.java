@@ -1,7 +1,6 @@
 package websocket;
 
-import de.kleindev.twitchbot.server.websocket.packets.auth.AuthPacket;
-import de.kleindev.twitchbot.server.websocket.packets.ping.PingPacket;
+import de.kleindev.twitchbot.websocket.packets.ping.PingPacket;
 
 import java.net.URI;
 import java.net.URISyntaxException;

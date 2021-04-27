@@ -18,6 +18,6 @@ public class PacketSerializer implements JsonSerializer<Packet> {
     private String convertClassName(String className){
         return className
                 .replace("de.kleindev.twitchbot.client.", "")
-                .replace("de.kleindev.twitchbot.server.", "");
+                .replace("de.kleindev.twitchbot.client.", "");
     }
 }

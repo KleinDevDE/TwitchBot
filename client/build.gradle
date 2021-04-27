@@ -11,6 +11,7 @@ javafx {
 
 group 'de.kleindev.twitchbot'
 version '1.0'
+mainClassName = 'JavaFXMain'
 
 repositories {
     mavenCentral()

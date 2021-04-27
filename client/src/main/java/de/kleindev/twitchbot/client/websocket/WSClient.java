@@ -36,9 +36,13 @@ public class WSClient extends WebSocketClient {
             System.err.println("[WebSocket|"+endpoint+"] Invalid Data received from server!");
             return;
         }
+
         Packet packet = GsonHelper.fromJson(message, Packet.class);
         packet.decrypt();
+
         if (packet instanceof TwoFADataPacket){
+            TwoFADataPacket twoFADataPacket = (TwoFADataPacket) packet;
+
             System.out.println("Open Debug_2FA");
             Platform.runLater(()-> Debug_2FA.show(false, (TwoFADataPacket) packet));
         } else if (packet instanceof AuthPacket){
