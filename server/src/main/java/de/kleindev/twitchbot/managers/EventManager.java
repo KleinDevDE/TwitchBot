@@ -1,5 +1,7 @@
 package de.kleindev.twitchbot.managers;
 
+import com.google.inject.Binder;
+import com.google.inject.Module;
 import de.kleindev.twitchbot.external.twitch.events.Async;
 import de.kleindev.twitchbot.external.twitch.events.CriticalProcessTimeEvent;
 import de.kleindev.twitchbot.external.twitch.events.Event;
@@ -18,7 +20,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class EventManager {
+public class EventManager implements Module {
+
+    @Override
+    public void configure(Binder binder) {
+
+    }
 
     public abstract class RegisteredListener {
 

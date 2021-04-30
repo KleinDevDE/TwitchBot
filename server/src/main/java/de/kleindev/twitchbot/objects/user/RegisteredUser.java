@@ -1,30 +1,28 @@
 package de.kleindev.twitchbot.objects.user;
 
 import de.kleindev.twitchbot.external.discord.DiscordAPI;
+import de.kleindev.twitchbot.external.discord.DiscordModules;
 import de.kleindev.twitchbot.external.email.EmailAPI;
 import de.kleindev.twitchbot.external.twitch.TwitchAPI;
+import de.kleindev.twitchbot.external.twitch.TwitchModules;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
+@Setter
 public class RegisteredUser {
-    private UUID userID;
+    private Session session;
+    private Long userID;
 
+    private int argon2Iterations;
     boolean twitchAPIClientEnabled;
     boolean discordAPIClientEnabled;
     boolean mailAPIClientEnabled;
-    List<Module> modules;
+    List<TwitchModules> twitchModules;
+    List<DiscordModules> discordModules;
     TwitchAPI twitchAPI;
     DiscordAPI discordAPI;
     EmailAPI emailAPI;
-
-    public RegisteredUser() {
-        //... = ...
-    }
-
-    public void setupClient() {
-        //...
-    }
 }

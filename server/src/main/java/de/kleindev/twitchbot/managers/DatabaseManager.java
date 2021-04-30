@@ -1,5 +1,8 @@
 package de.kleindev.twitchbot.managers;
 
+import com.github.twitch4j.modules.IModule;
+import com.google.inject.Binder;
+import com.google.inject.Module;
 import de.kleindev.twitchbot.configuration.file.YamlConfiguration;
 import de.kleindev.twitchbot.logging.LogType;
 import de.kleindev.twitchbot.logging.Logger;
@@ -15,7 +18,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class DatabaseManager {
+public class DatabaseManager implements Module {
     File connectionsFolder;
     private static HashMap<String, DatabaseConnection> connectionHashMap = new HashMap<>();
 
@@ -80,8 +83,17 @@ public class DatabaseManager {
         Logger.log("Databases initialized!");
     }
 
+    private void checkFile(){
+        //TODO Check if file is valid
+    }
+
     public void closeAll() throws SQLException {
         for (DatabaseConnection db : connectionHashMap.values())
             db.closeConnections();
+    }
+
+    @Override
+    public void configure(Binder binder) {
+
     }
 }

@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="266.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="de.kleindev.twitchbot.client.fxmlcontrollers.debug.Debug_Login">
+            fx:controller="de.kleindev.twitchbot.fxmlcontrollers.debug.Debug_Login">
     <children>
         <TextField fx:id="username" onKeyTyped="#validateUsername" layoutX="14.0" layoutY="43.0" promptText="Username"/>
         <TextField fx:id="password" onKeyTyped="#validatePassword" layoutX="14.0" layoutY="75.0" promptText="Password"/>

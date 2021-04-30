@@ -1,5 +1,8 @@
 package de.kleindev.twitchbot.objects.databases.base.objects;
 
+import lombok.Getter;
+
+@Getter
 public class Column {
     private String name;
     private boolean primary = false;
@@ -8,8 +11,9 @@ public class Column {
     private String comment;
     private ColumnType type;
     private Long length;
-    private String standartFill;
+    private String defaultValue;
     private boolean isAutoFill = false;
+    private boolean autoIncrement = false;
 
     public Column(String name, ColumnType columnType){
         this.name = name;
@@ -41,9 +45,14 @@ public class Column {
         return this;
     }
 
-    public Column setStandartFill(String standartFill) {
+    public Column setDefaultValue(String defaultValue) {
         this.isAutoFill = true;
-        this.standartFill = standartFill;
+        this.defaultValue = defaultValue;
+        return this;
+    }
+
+    public Column setAutoIncrement(boolean autoIncrement){
+        this.autoIncrement = autoIncrement;
         return this;
     }
 
@@ -63,9 +72,9 @@ public class Column {
 
         //Default value
         if(isAutoFill) {
-            if(standartFill == null)
+            if(defaultValue == null)
                 sb.append(" DEFAULT NULL");
-            else sb.append(" DEFAULT '").append(standartFill).append("' ");
+            else sb.append(" DEFAULT '").append(defaultValue).append("' ");
         }
 
         //Comment

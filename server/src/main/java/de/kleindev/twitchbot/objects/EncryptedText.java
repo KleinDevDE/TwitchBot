@@ -70,5 +70,4 @@ public class EncryptedText {
 		}
 		return null;
 	}
-	
 }

@@ -10,6 +10,9 @@ public class Row {
 
 	public Row(ResultSet rs) {
 		try {
+			if (!rs.next()){
+				return;
+			}
 			ResultSetMetaData rsm = rs.getMetaData();
 			int columnCount = rsm.getColumnCount();
 			for (int i = 1; i <= columnCount; i++) {

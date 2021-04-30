@@ -20,8 +20,8 @@ public class WebSocketManager {
         wsServer.stop();
     }
 
-    public static void broadcast(String message){
-        wsServer.broadcast(message);
+    public static void broadcast(Packet packet){
+        wsServer.broadcast(packet.getSendableString());
     }
 
     public Collection<WebSocket> getConnections(){

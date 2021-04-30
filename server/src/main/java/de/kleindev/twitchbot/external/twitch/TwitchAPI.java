@@ -6,31 +6,33 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import de.kleindev.twitchbot.external.twitch.listeners.*;
 
-import java.util.UUID;
-
 public class TwitchAPI {
     private TwitchClient twitchClient;
     private TwitchConfig twitchConfig;
 
-    public TwitchAPI(UUID userID){
+    public TwitchAPI(Long userID){
         //TODO Get data from MySQL
+
         TwitchClientBuilder twitchClientBuilder = TwitchClientBuilder.builder();
         twitchClientBuilder.withEnableChat(true);
         twitchClientBuilder.withEnableHelix(true);
         twitchClientBuilder.withEnableGraphQL(true);
         twitchClientBuilder.withEnablePubSub(true);
         twitchClientBuilder.withEnableKraken(true);
-        twitchClientBuilder.withCommandTrigger("!");
+        twitchClientBuilder.withCommandTrigger(twitchConfig.getCommandPrefix());
         twitchClientBuilder.withChatAccount(twitchConfig.getOAuth2Credential());
         twitchClient = twitchClientBuilder.build();
-        startBot();
     }
 
-    private void startBot(){
-//        twitchClient.getChat().joinChannel(data.getTwitchBotConfiguration().channel);
-//        twitchClient.getChat().sendMessage(data.getTwitchBotConfiguration().channel, "/color #4287f5");
+    public void startBot(){
+        twitchClient.getChat().joinChannel(twitchConfig.getStreamerChannelName());
+        twitchClient.getChat().sendMessage(twitchConfig.getStreamerChannelName(), "/color "+twitchConfig.getChatNickColor());
+        twitchClient.getPubSub().listenForChannelPointsRedemptionEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
+        twitchClient.getPubSub().listenForCheerEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
+        twitchClient.getPubSub().listenForPublicCheerEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
+        twitchClient.getPubSub().listenForChannelBitsLeaderboardEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
 
-
+        // Register all listeners for "recent activity log"
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new FollowEventListener());
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ClearChatEventListener());
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ChannelStateEventListener());
@@ -48,15 +50,15 @@ public class TwitchAPI {
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ChannelModEventListener());
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ChannelJoinEventListener());
         twitchClient.getChat().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new CheerEventListener());
-        twitchClient.getPubSub().listenForChannelPointsRedemptionEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
-        twitchClient.getPubSub().listenForCheerEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
-        twitchClient.getPubSub().listenForPublicCheerEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
-        twitchClient.getPubSub().listenForChannelBitsLeaderboardEvents(twitchConfig.getOAuth2Credential(), twitchConfig.getStreamerChannelID());
         twitchClient.getPubSub().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new BitsLeaderboardEventListener());
         twitchClient.getPubSub().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ChannelPointsRedemptionEventListener());
         twitchClient.getPubSub().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new RedemptionStatusUpdateEventListener());
         twitchClient.getPubSub().getEventManager().getEventHandler(SimpleEventHandler.class).registerListener(new ChannelBitsEventListener());
         //TODO add whisper listener
+    }
+
+    public void stopBot(){
+        twitchClient.getPubSub().getEventManager().close();
     }
 
 

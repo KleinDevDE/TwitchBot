@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="331.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.kleindev.twitchbot.client.fxmlcontrollers.debug.Debug_2FA">
+<AnchorPane prefHeight="331.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.kleindev.twitchbot.fxmlcontrollers.debug.Debug_2FA">
    <children>
       <ImageView fx:id="qr_code" accessibleHelp="QR-Code" accessibleText="QR-Code" fitHeight="150.0" fitWidth="150.0" layoutX="64.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="122.0" layoutY="164.0" text="2FA">

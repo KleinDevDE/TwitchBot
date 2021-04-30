@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import de.kleindev.libsec.crypto.CryptoFields;
 import de.kleindev.twitchbot.helpers.GsonHelper;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.UUID;
+
+@Getter
+@Setter
 public class Packet extends CryptoFields {
     private PacketType packetType;
-
-    public PacketType getPacketType() {
-        return packetType;
-    }
-
-    public void setPacketType(PacketType packetType) {
-        this.packetType = packetType;
-    }
+    private UUID sessionID;
+    private String hardwareID;
 
     public static boolean isValidPacket(String message){
         try {

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.kleindev.twitchbot.client.fxmlcontrollers.debug.Debug_Main">
+<AnchorPane prefHeight="500.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.kleindev.twitchbot.fxmlcontrollers.debug.Debug_Main">
    <children>
       <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#openLoginPage" text="Open Login Page" />
       <Button layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#ping" text="Ping" />

@@ -1,14 +1,16 @@
 package de.kleindev.twitchbot.utils;
 
+import lombok.SneakyThrows;
+import org.apache.commons.io.FileUtils;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class DevTweaks {
@@ -243,4 +245,25 @@ public class DevTweaks {
 		return fileSignature == 0x504B0304 || fileSignature == 0x504B0506 || fileSignature == 0x504B0708;
 	}
 
+	@SneakyThrows
+	public static String encodeFileToBase64Binary(File file) {
+		byte[] encoded = Base64.getEncoder().encode(FileUtils.readFileToByteArray(file));
+		return new String(encoded, StandardCharsets.US_ASCII);
+	}
+
+	public static void decodeBase64BinaryToFile(String base64String, File file) throws IOException {
+		byte[] encoded = Base64.getEncoder().encode(base64String.getBytes(StandardCharsets.US_ASCII));
+
+		if (!file.getParentFile().exists()){
+			file.getParentFile().mkdirs();
+		}
+		if (!file.exists()){
+			file.createNewFile();
+		}
+
+		FileWriter fileWriter = new FileWriter(file);
+		fileWriter.write(new String(encoded, StandardCharsets.US_ASCII));
+		fileWriter.flush();
+		fileWriter.close();
+	}
 }
